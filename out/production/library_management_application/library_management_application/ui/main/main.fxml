@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.GlyphsStack?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<GlyphsStack prefHeight="719.0" prefWidth="1019.0" stylesheets="@../../style.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="library_management_application.ui.main.MainController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <center>
+            <JFXTabPane prefHeight="649.0" prefWidth="759.0" styleClass="Jfx-tab-pane" BorderPane.alignment="CENTER">
+               <tabs>
+                  <Tab style="-fx-pref-width: 200; -fx-pref-height: 60;" text="Borrow">
+                     <content>
+                        <AnchorPane disable="true" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="995.0">
+                           <children>
+                              <JFXComboBox id="jfx-text" fx:id="comBook_title" editable="true" labelFloat="true" layoutX="41.0" layoutY="73.0" prefHeight="40.0" prefWidth="300.0" promptText="Book Title">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXComboBox>
+                              <JFXComboBox id="jfx-text" fx:id="comAuthor_name" editable="true" labelFloat="true" layoutX="41.0" layoutY="131.0" prefHeight="40.0" prefWidth="300.0" promptText="Author Name">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXComboBox>
+                              <JFXComboBox id="jfx-text" fx:id="comMember_id" editable="true" labelFloat="true" layoutX="530.0" layoutY="14.0" prefHeight="40.0" prefWidth="300.0" promptText="Member ID">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXComboBox>
+                              <JFXComboBox id="jfx-text" fx:id="comMember_name" editable="true" labelFloat="true" layoutX="530.0" layoutY="73.0" prefHeight="40.0" prefWidth="300.0" promptText="Member Name">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXComboBox>
+                              <JFXDatePicker id="jfx-text" fx:id="txfIssue_date" defaultColor="WHITE" editable="false" layoutX="531.0" layoutY="132.0" onAction="#calculateReturnDate" overLay="true" prefHeight="40.0" prefWidth="300.0" promptText="Issue Date">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXDatePicker>
+                              <JFXDatePicker id="jfx-text" fx:id="txfReturn_date" defaultColor="#01b1fc" editable="false" layoutX="532.0" layoutY="195.0" overLay="true" prefHeight="40.0" prefWidth="300.0" promptText="Return Date">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXDatePicker>
+                              <TableView fx:id="tblIssueRecord" layoutX="26.0" layoutY="336.0" prefHeight="262.0" prefWidth="830.0">
+                                 <columns>
+                                    <TableColumn fx:id="member_Name" editable="false" maxWidth="1.7976931348623157E308" minWidth="75.0" sortable="false" text="Member ID" />
+                                    <TableColumn editable="false" prefWidth="129.0" sortable="false" text="Member Name" />
+                                    <TableColumn editable="false" prefWidth="81.0" text="Book ID" />
+                                    <TableColumn fx:id="book_Title" editable="false" maxWidth="1.7976931348623157E308" minWidth="75.0" prefWidth="126.0" sortable="false" text="Book Title" />
+                                    <TableColumn fx:id="author_Name" editable="false" maxWidth="1.7976931348623157E308" minWidth="23.0" prefWidth="116.0" sortable="false" text="Author Name" />
+                                    <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="53.0" prefWidth="122.0" sortable="false" text="Issue Date" />
+                                    <TableColumn editable="false" maxWidth="1.7976931348623157E308" minWidth="71.0" prefWidth="175.0" sortable="false" text="Return Date" />
+                                 </columns>
+                              </TableView>
+                              <Label id="jfx-text" layoutX="41.0" layoutY="240.0" prefHeight="20.0" prefWidth="75.0" text="Availability">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label id="jfx-text" fx:id="availbility" layoutX="126.0" layoutY="240.0" prefHeight="10.0" prefWidth="59.0">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <JFXButton fx:id="add" layoutX="625.0" layoutY="277.0" onAction="#addIssueRecord" prefHeight="25.0" prefWidth="58.0" styleClass="borrow-button" text="Add" />
+                              <JFXButton id="jfx-text" fx:id="remove" layoutX="738.0" layoutY="277.0" onAction="#removeIssueRecord" prefHeight="47.0" prefWidth="74.0" styleClass="borrow-button" text="Remove" />
+                              <JFXButton id="jfx-text" fx:id="save" layoutX="748.0" layoutY="605.0" onAction="#addingIssue" styleClass="borrow-button" text="Save" />
+                              <JFXComboBox id="jfx-text" fx:id="comBook_id" editable="true" labelFloat="true" layoutX="41.0" layoutY="14.0" onAction="#loadBookData" prefHeight="40.0" prefWidth="300.0" promptText="Book ID">
+                                 <padding>
+                                    <Insets top="15.0" />
+                                 </padding>
+                              </JFXComboBox>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+                  <Tab style="-fx-pref-width: 200; -fx-pref-height: 60;" text="Return">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                     </content>
+                  </Tab>
+               </tabs>
+            </JFXTabPane>
+         </center>
+         <right>
+            <VBox fx:id="vbox1" prefHeight="200.0" prefWidth="100.0" styleClass="vbox" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icon/Sofias-books.jpg" />
+                     </image>
+                  </ImageView>
+                  <JFXButton id="vbox-button" fx:id="btnMemberList" prefHeight="129.0" prefWidth="169.0" text="Member List" textFill="WHITE" />
+                  <JFXButton id="vbox-button" fx:id="btnBook" prefHeight="400.0" prefWidth="170.0" text="Book List" textFill="WHITE" />
+                  <JFXButton id="vbox-button" prefHeight="400.0" prefWidth="170.0" text="Supplier List" textFill="WHITE" />
+                  <JFXButton id="vbox-button" prefHeight="400.0" prefWidth="170.0" text="Search Book" textFill="WHITE" />
+               </children>
+            </VBox>
+         </right>
+      </BorderPane>
+   </children>
+</GlyphsStack>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<JFXDrawer direction="RIGHT" prefHeight="585.0" prefWidth="137.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: Black;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Sofias-books.jpg" />
+               </image>
+            </ImageView>
+            <JFXButton prefHeight="400.0" prefWidth="170.0" text="Add Member" textFill="WHITE" />
+            <JFXButton prefHeight="400.0" prefWidth="170.0" text="Add Book" textFill="WHITE" />
+            <JFXButton prefHeight="400.0" prefWidth="170.0" text="Member List" textFill="WHITE" />
+            <JFXButton prefHeight="400.0" prefWidth="170.0" text="Book List" textFill="WHITE" />
+            <JFXButton prefHeight="400.0" prefWidth="170.0" text="Supplier List" textFill="WHITE" />
+            <JFXButton prefHeight="400.0" prefWidth="170.0" text="Search Book" textFill="WHITE" />
+         </children>
+      </VBox>
+   </children>
+</JFXDrawer>

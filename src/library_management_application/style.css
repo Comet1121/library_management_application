@@ -1,0 +1,45 @@
+*{
+	-fx-primary: #403E39;
+	-fx-secondary: #fdffe0;
+	-fx-primary-text-fill:#E5EBEB;
+	-fx-secondary-text-fill: #d4e157;
+}
+
+.tab-header-background{
+	-fx-background-color: -fx-secondary;
+}
+#vbox-button{
+	-fx-text-fill: -fx-primary-text-fill;
+	-fx-pref-height: 200;
+	-fx-pref-width: 170;
+}
+.borrow-button{
+	-fx-background-color: -fx-primary ;
+	-fx-font-size: 13pt;
+	-fx-background-radius: 10;
+	-fx-border-radius: 10;
+	-fx-text-fill: -fx-primary-text-fill;
+	-fx-pref-width: 100;
+	-fx-pref-height: 40;
+}
+.vbox{
+	-fx-background-color: -fx-primary;
+}
+
+.tab{
+	-fx-background-color: -fx-secondary;
+	-fx-border-radius: 10;
+	-fx-background-radius: 10;
+}
+.jfx-tab-pane{
+	-fx-background-color: -fx-secondary;
+}
+
+#jfx-text{
+	-fx-text-fill: -fx-primary-text-fill;
+	-fx-font-size: 13pt;
+	-jfx-focus-color: -fx-primary-text-fill;
+	-jfx-unfocus-color: -fx-primary-text-fill;
+	-jfx-unfocus-text-fill: -fx-primary-text-fill;
+	-jfx-prompt-text: -fx-primary-text-fill;
+}

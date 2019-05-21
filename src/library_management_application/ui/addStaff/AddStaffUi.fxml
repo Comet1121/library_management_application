@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="367.0"
+           prefWidth="385.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="library_management_application.ui.addStaff.AddStaffController">
+   <children>
+      <AnchorPane prefHeight="391.0" prefWidth="496.0">
+         <children>
+            <JFXTextField fx:id="txfName" labelFloat="true" layoutX="45.0" layoutY="39.0" prefHeight="32.0" prefWidth="311.0" promptText="Name" AnchorPane.leftAnchor="45.0" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="39.0">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextField fx:id="txfPhone" labelFloat="true" layoutX="47.0" layoutY="128.0" prefHeight="32.0" prefWidth="311.0" promptText="Phone" AnchorPane.leftAnchor="47.0" AnchorPane.rightAnchor="45.0">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </JFXTextField>
+            <JFXTextArea fx:id="txfAddress" labelFloat="true" layoutX="48.0" layoutY="172.0" prefHeight="61.0" prefWidth="311.0" promptText="Address" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="44.0">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </JFXTextArea>
+            <JFXPasswordField fx:id="txfPassword" labelFloat="true" layoutX="46.0" layoutY="83.0" prefHeight="25.0" prefWidth="311.0" promptText="Password" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="46.0">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </JFXPasswordField>
+            <JFXComboBox fx:id="comRole" labelFloat="true" layoutX="48.0" layoutY="234.0" prefHeight="25.0" prefWidth="311.0" promptText="Role" AnchorPane.leftAnchor="48.0" AnchorPane.rightAnchor="44.0">
+               <padding>
+                  <Insets top="15.0" />
+               </padding>
+            </JFXComboBox>
+            <JFXButton fx:id="btnSave" layoutX="101.0" layoutY="307.0" onAction="#save" prefHeight="40.0" prefWidth="66.0" text="Save" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="101.0" />
+            <JFXButton fx:id="btnCanle" cancelButton="true" layoutX="250.0" layoutY="307.0" onAction="#cancle" prefHeight="40.0" prefWidth="82.0" text="Cancle" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="71.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>

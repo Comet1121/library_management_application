@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+            prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="library_management_application.test.testUiController">
+   <children>
+      <JFXComboBox fx:id="comTest"  layoutX="154.0" layoutY="95.0" prefHeight="44.0"
+                   prefWidth="287.0" />
+   </children>
+</AnchorPane>
