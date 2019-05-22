@@ -12,8 +12,8 @@ import java.util.List;
 public final class DB_Connection {
 
     private static final String URL = "jdbc:mysql://localhost/library_management";
-    private static final String USER_NAME = "dbuser";
-    private static final String PASSWORD = "root19121998";
+    private static final String USER_NAME = "root";
+    private static final String PASSWORD = "";
 
     public static Connection getConnection() throws SQLException {
         try {
@@ -85,35 +85,27 @@ public final class DB_Connection {
             while (rs.next()) {
                 last_id = rs.getString(id_type);
             }
-            System.out.println(last_id);
             int num_id = Integer.parseInt(last_id.substring(3));
-            System.out.println(num_id);
 
 
             if(num_id >= 9999){
                 int char_value =  (int)last_id.charAt(1)+1;
                 char c = (char) char_value;
                 s_id =(""+ last_id.charAt(0))+c+"_0001";
-                System.out.println(1);
             }
             else if(num_id >= 100){
                 s_id = last_id.substring(0,3)+"0"+(num_id+1);
-                System.out.println(2);
             }
             else if(num_id >= 10){
                 s_id = last_id.substring(0,3)+"00"+(num_id+1);
-                System.out.println(3);
             }
             else{
                 s_id = last_id.substring(0,3)+"000"+(num_id+1);
-                System.out.println("num_id -- "+num_id);
-                System.out.println(4);
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println(s_id);
         return s_id;
     }
 
@@ -144,13 +136,11 @@ public final class DB_Connection {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                System.out.println(rs.getString(1));
                 com_name.getItems().add(rs.getString(1));
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
 
     }
 }

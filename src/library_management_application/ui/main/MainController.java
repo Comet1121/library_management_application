@@ -85,6 +85,7 @@ public class MainController implements Initializable {
         DB_Connection.loadDataForCombobox(comBook_title, "book_title", "books");
         DB_Connection.loadDataForCombobox(comAuthor_name, "author_name", "author");
         DB_Connection.loadDataForCombobox(comMember_name, "member_name", "member");
+        DB_Connection.loadDataForCombobox(comMember_id, "member_id", "member");
 
         if (Loader.auth.equals("admin")) {
             JFXButton btnAddBook = new JFXButton("Add Book");
@@ -136,23 +137,16 @@ public class MainController implements Initializable {
     }
 
     @FXML
-    void loadBookData(ActionEvent event) {
-        System.out.println("loadBookData");
-        String sql = "SELECT author_id, book_title FROM books WHERE books.book_id=?";
-        try(Connection conn = DB_Connection.getConnection()){
-            PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,comBook_id.getValue());
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()){
-                System.out.println("reach rs");
-                comBook_title.setValue(rs.getString("book_title"));
-                System.out.println(rs.getString("author_id"));
-                comAuthor_name.setValue(DB_Connection.getNameByID("author_name","author","author_id", rs.getString("author_id")));
-            }
+    void loadBookDataByID(ActionEvent event) {
+        load.loadBookData("book_title", "book_id", comBook_title,comAuthor_name, comBook_id);
+    }
 
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+    @FXML
+    void loadMemberByID(ActionEvent event) {
+        load.loadMemberData("member_name","member_id", comMember_name,comMember_id,"member");
+    }
+    public void loadMemberByName(){
+        load.loadMemberData("member_id", "member_name", comMember_id,comMember_name, "member");
     }
 
 }

@@ -22,24 +22,24 @@
 	-fx-pref-width: 100;
 	-fx-pref-height: 40;
 }
+
 .vbox{
 	-fx-background-color: -fx-primary;
 }
 
 .tab{
 	-fx-background-color: -fx-secondary;
-	-fx-border-radius: 10;
-	-fx-background-radius: 10;
+	-fx-text-fill: -fx-primary;
+
 }
 .jfx-tab-pane{
+	-fx-text-fill: -fx-primary;
 	-fx-background-color: -fx-secondary;
 }
 
 #jfx-text{
-	-fx-text-fill: -fx-primary-text-fill;
+	-fx-text-fill: -fx-primary;
 	-fx-font-size: 13pt;
 	-jfx-focus-color: -fx-primary-text-fill;
-	-jfx-unfocus-color: -fx-primary-text-fill;
-	-jfx-unfocus-text-fill: -fx-primary-text-fill;
-	-jfx-prompt-text: -fx-primary-text-fill;
+	-jfx-prompt-text-fill: -fx-primary-text-fill;
 }

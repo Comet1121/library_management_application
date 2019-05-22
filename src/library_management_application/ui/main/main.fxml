@@ -37,12 +37,12 @@
                                     <Insets top="15.0" />
                                  </padding>
                               </JFXComboBox>
-                              <JFXComboBox id="jfx-text" fx:id="comMember_id" editable="true" labelFloat="true" layoutX="530.0" layoutY="14.0" prefHeight="40.0" prefWidth="300.0" promptText="Member ID">
+                              <JFXComboBox id="jfx-text" fx:id="comMember_id" editable="true" labelFloat="true" layoutX="530.0" layoutY="14.0" onAction="#loadMemberByID" prefHeight="40.0" prefWidth="300.0" promptText="Member ID">
                                  <padding>
                                     <Insets top="15.0" />
                                  </padding>
                               </JFXComboBox>
-                              <JFXComboBox id="jfx-text" fx:id="comMember_name" editable="true" labelFloat="true" layoutX="530.0" layoutY="73.0" prefHeight="40.0" prefWidth="300.0" promptText="Member Name">
+                              <JFXComboBox id="jfx-text" fx:id="comMember_name" editable="true" labelFloat="true" layoutX="530.0" layoutY="73.0" onAction="#loadMemberByName" prefHeight="40.0" prefWidth="300.0" promptText="Member Name">
                                  <padding>
                                     <Insets top="15.0" />
                                  </padding>
@@ -57,7 +57,7 @@
                                     <Insets top="15.0" />
                                  </padding>
                               </JFXDatePicker>
-                              <TableView fx:id="tblIssueRecord" layoutX="26.0" layoutY="336.0" prefHeight="262.0" prefWidth="830.0">
+                              <TableView fx:id="tblIssueRecord" layoutX="26.0" layoutY="336.0" onSort="#loadMemberByID" prefHeight="262.0" prefWidth="830.0">
                                  <columns>
                                     <TableColumn fx:id="member_Name" editable="false" maxWidth="1.7976931348623157E308" minWidth="75.0" sortable="false" text="Member ID" />
                                     <TableColumn editable="false" prefWidth="129.0" sortable="false" text="Member Name" />
@@ -78,10 +78,10 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <JFXButton fx:id="add" layoutX="625.0" layoutY="277.0" onAction="#addIssueRecord" prefHeight="25.0" prefWidth="58.0" styleClass="borrow-button" text="Add" />
-                              <JFXButton id="jfx-text" fx:id="remove" layoutX="738.0" layoutY="277.0" onAction="#removeIssueRecord" prefHeight="47.0" prefWidth="74.0" styleClass="borrow-button" text="Remove" />
-                              <JFXButton id="jfx-text" fx:id="save" layoutX="748.0" layoutY="605.0" onAction="#addingIssue" styleClass="borrow-button" text="Save" />
-                              <JFXComboBox id="jfx-text" fx:id="comBook_id" editable="true" labelFloat="true" layoutX="41.0" layoutY="14.0" onAction="#loadBookData" prefHeight="40.0" prefWidth="300.0" promptText="Book ID">
+                              <JFXButton id="jfx_text" fx:id="add" layoutX="625.0" layoutY="277.0" onAction="#addIssueRecord" prefHeight="25.0" prefWidth="58.0" styleClass="borrow-button" text="Add" />
+                              <JFXButton fx:id="remove" layoutX="738.0" layoutY="277.0" onAction="#removeIssueRecord" prefHeight="47.0" prefWidth="74.0" styleClass="borrow-button" text="Remove" />
+                              <JFXButton fx:id="save" layoutX="748.0" layoutY="605.0" onAction="#addingIssue" styleClass="borrow-button" text="Save" />
+                              <JFXComboBox id="jfx-text" fx:id="comBook_id" editable="true" labelFloat="true" layoutX="41.0" layoutY="14.0" onAction="#loadBookDataByID" prefHeight="40.0" prefWidth="300.0" promptText="Book ID">
                                  <padding>
                                     <Insets top="15.0" />
                                  </padding>
