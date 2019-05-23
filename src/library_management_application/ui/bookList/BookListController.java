@@ -1,17 +1,25 @@
 package library_management_application.ui.bookList;
 
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXTextField;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -48,6 +56,20 @@ public class BookListController implements Initializable {
     @FXML
     private TableColumn<Book, String> locationCol;
 
+    @FXML
+    private JFXTextField txfSearch_box;
+
+    @FXML
+    private JFXComboBox<String> comSearch_type;
+
+    @FXML
+    private Button btnSearch;
+
+    @FXML
+    void searching(ActionEvent event) {
+        searchingBookData();
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         book_idCol.setCellValueFactory(new PropertyValueFactory<>("book_id"));
@@ -61,6 +83,8 @@ public class BookListController implements Initializable {
         availableCol.setCellValueFactory(new PropertyValueFactory<>("available"));
 
 
+        comSearch_type.getItems().addAll("Book ID", "Book Title", "Author", "Category");
+
         try {
             tblbookList.getItems().addAll(Book.getAllList());
         } catch (SQLException e) {
@@ -70,4 +94,53 @@ public class BookListController implements Initializable {
         }
 
     }
+
+    public void searchingBookData(){
+        String sql = "SELECT book_id, book_title, author_id, supplier_id, category_id,price, qty, location " +
+                "FROM books, author ";
+        String key_word = txfSearch_box.getText();
+
+        int choice = comSearch_type.getSelectionModel().getSelectedIndex();
+        System.out.println(choice);
+        switch (choice){
+            case 0: sql += "WHERE book_id='"+key_word+"';";break;
+            case 1: sql += "WHERE book_title LIKE '%"+key_word+"%';";break;
+            case 2: sql += "WHERE author.author_name LIKE '%"+key_word+"%'";
+            default: break;
+        }
+        System.out.println(sql);
+        ArrayList<Book> books = new ArrayList();
+
+        try(Connection con = DB_Connection.getConnection();
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery(sql)) {
+
+            while(rs.next()){
+                String author_name = DB_Connection.getNameByID("author_name","author",
+                    "author_id",rs.getString("author_id"));
+                String supplier_name = DB_Connection.getNameByID("supplier_name", "supplier",
+                        "supplier_id", rs.getString("supplier_id"));
+
+                String category_name = DB_Connection.getNameByID("category_name", "category",
+                        "category_id", rs.getString("category_id"));
+                Book book = new Book(rs.getString("book_id"),
+                        rs.getString("book_title"),
+                        author_name,
+                        supplier_name,
+                        category_name,
+                        rs.getInt("price"),
+                        rs.getInt("qty"),
+                        rs.getString("location"),
+                        Book.setAvailable(rs.getInt("qty")));
+                books.add(book);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        tblbookList.getItems().clear();
+        tblbookList.getItems().addAll(books);
+
+    }
+
 }

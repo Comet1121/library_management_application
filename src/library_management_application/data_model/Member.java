@@ -83,7 +83,7 @@ public class Member {
 
     public boolean addMember(){
         boolean b = false;
-        String sql = "INSERT INTO member (member_id, member_name,NRC,  phone, address, member_start_date, " +
+        String sql = "INSERT INTO member (member_id, member_name, NRC,  address, phone, member_start_date, " +
                 "member_expire_date) VALUES(?, ?, ?, ?, ?, ?, ?);";
 
         try(Connection conn = DB_Connection.getConnection()){

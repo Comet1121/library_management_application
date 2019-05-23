@@ -19,7 +19,7 @@ public class Book {
     private String available;
     private String supplier_name;
 
-    public Book(String book_id, String book_title, String author_name,String supplier_name, String category_name,
+    public Book(String book_id, String book_title, String author_name, String supplier_name, String category_name,
                 int price, int qty, String location) {
         this.book_id = book_id;
         this.book_title = book_title;
@@ -42,19 +42,18 @@ public class Book {
         this.qty = qty;
         this.supplier_name = supplier_name;
         this.location = location;
-        if (qty > 0){
+        if (qty > 0) {
             this.available = "available";
-        }
-        else {
+        } else {
             this.available = "not available";
         }
     }
-    public static String setAvailable(int qty){
+
+    public static String setAvailable(int qty) {
         String available = "";
-        if (qty > 0){
+        if (qty > 0) {
             available = "available";
-        }
-        else {
+        } else {
             available = "not available";
         }
         return available;
@@ -139,51 +138,50 @@ public class Book {
                 ".category_id AND books.author_id = author.author_id AND books.supplier_id = supplier.supplier_id " +
                 "ORDER BY book_id;";
 
-        try(Connection conn = DB_Connection.getConnection();
-            Statement st = conn.createStatement();
-            ResultSet rs = st.executeQuery(sql);) {
+        try (Connection conn = DB_Connection.getConnection();
+             Statement st = conn.createStatement();
+             ResultSet rs = st.executeQuery(sql);) {
             while (rs.next()) {
-               Book b = new Book(rs.getString("book_id"),
-                                 rs.getString("book_title"),
-                                 rs.getString("author_name"),
-                                 rs.getString("supplier_name"),
-                                 rs.getString("category_name"),
-                                 rs.getInt("price"),
-                                 rs.getInt("qty"),
-                                 rs.getString("location"),
-                                 setAvailable(rs.getInt("qty"))
-                                );
-               books.add(b);
+                Book b = new Book(rs.getString("book_id"),
+                        rs.getString("book_title"),
+                        rs.getString("author_name"),
+                        rs.getString("supplier_name"),
+                        rs.getString("category_name"),
+                        rs.getInt("price"),
+                        rs.getInt("qty"),
+                        rs.getString("location"),
+                        setAvailable(rs.getInt("qty"))
+                );
+                books.add(b);
             }
-        }
-        catch (SQLException ex){
-            System.out.println("Error: "+ ex.getMessage());
+        } catch (SQLException ex) {
+            System.out.println("Error: " + ex.getMessage());
         }
         return books;
     }
 
 
-    public Boolean addBook(){
+    public Boolean addBook() {
         boolean b = false;
         String sql = "INSERT INTO books (book_id, book_title, author_id, supplier_id, category_id, price, qty, " +
                 "location) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
-        try(Connection conn = DB_Connection.getConnection();
-            ){
+        try (Connection conn = DB_Connection.getConnection();
+        ) {
             String author_id = DB_Connection.getID("author_id", "author_name", author_name, "author");
             String category_id = DB_Connection.getID("category_id", "category_name", category_name, "category");
             String supplier_id = DB_Connection.getID("supplier_id", "supplier_name", supplier_name, "supplier");
 
             PreparedStatement ps = conn.prepareStatement(sql);
-            ps.setString(1,getBook_id());
-            ps.setString(2,getBook_title());
-            ps.setString(3,author_id);
-            ps.setString(4,supplier_id);
-            ps.setString(5,category_id);
-            ps.setInt(6,getPrice());
-            ps.setInt(7,getQty());
-            ps.setString(8,getLocation());
+            ps.setString(1, getBook_id());
+            ps.setString(2, getBook_title());
+            ps.setString(3, author_id);
+            ps.setString(4, supplier_id);
+            ps.setString(5, category_id);
+            ps.setInt(6, getPrice());
+            ps.setInt(7, getQty());
+            ps.setString(8, getLocation());
             ps.executeUpdate();
 
             b = true;

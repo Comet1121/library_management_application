@@ -33,6 +33,7 @@ public class ItemReport extends Application{
 		cboReport.getItems().addAll("All", "Low Quantity", "Name");
 		txfInput.setPromptText("Enter key word");
 		Button btnReport = new Button("Report");
+
 		btnReport.setOnAction(e->report());
 
 		HBox input = new HBox(
