@@ -42,7 +42,7 @@ public final class DB_Connection {
     }
 
     public static String getID(String id,String colname, String name, String table){// get id from existing id
-        String sql = "SELECT "+id+" FROM "+table+" WHERE "+colname+"='"+name+"';";
+        String sql = "SELECT "+id+" FROM "+table+" WHERE "+table+"."+colname+" LIKE '%"+name+"%';";
         String rid = "";
         try(Connection conn = getConnection();){
             PreparedStatement ps = conn.prepareStatement(sql);

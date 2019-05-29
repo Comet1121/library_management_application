@@ -20,9 +20,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import library_management_application.Action.Loader;
 import library_management_application.data_model.Book;
 import library_management_application.database.DB_Connection;
 
@@ -82,7 +84,9 @@ public class BookListController implements Initializable {
         qtyCol.setCellValueFactory(new PropertyValueFactory<>("qty"));
         availableCol.setCellValueFactory(new PropertyValueFactory<>("available"));
 
-
+        if(Loader.auth.equals("admin")){
+            tblbookList.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        }
         comSearch_type.getItems().addAll("Book ID", "Book Title", "Author", "Category");
 
         try {
@@ -96,20 +100,23 @@ public class BookListController implements Initializable {
     }
 
     public void searchingBookData(){
-        String sql = "SELECT book_id, book_title, author_id, supplier_id, category_id,price, qty, location " +
-                "FROM books, author ";
+        String sql = "SELECT *" +
+                "FROM books";
         String key_word = txfSearch_box.getText();
 
         int choice = comSearch_type.getSelectionModel().getSelectedIndex();
         System.out.println(choice);
+
         switch (choice){
-            case 0: sql += "WHERE book_id='"+key_word+"';";break;
-            case 1: sql += "WHERE book_title LIKE '%"+key_word+"%';";break;
-            case 2: sql += "WHERE author.author_name LIKE '%"+key_word+"%'";
+            case 0: sql += " WHERE book_id='"+key_word+"';";break;
+            case 1: sql += " WHERE book_title LIKE '%"+key_word+"%';";break;
+            case 2: sql += " WHERE author_id='"+ DB_Connection.getID("author_id","author_name", key_word, "author")+"';";break;
+            case 3: sql += " WHERE category_id='"+DB_Connection.getID("category_id","category_name", key_word, "category")+"';";break;
             default: break;
         }
         System.out.println(sql);
         ArrayList<Book> books = new ArrayList();
+
 
         try(Connection con = DB_Connection.getConnection();
             Statement st = con.createStatement();
@@ -117,7 +124,8 @@ public class BookListController implements Initializable {
 
             while(rs.next()){
                 String author_name = DB_Connection.getNameByID("author_name","author",
-                    "author_id",rs.getString("author_id"));
+                            "author_id",rs.getString("author_id"));
+
                 String supplier_name = DB_Connection.getNameByID("supplier_name", "supplier",
                         "supplier_id", rs.getString("supplier_id"));
 
@@ -137,6 +145,7 @@ public class BookListController implements Initializable {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
+
 
         tblbookList.getItems().clear();
         tblbookList.getItems().addAll(books);
